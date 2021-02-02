@@ -5,6 +5,7 @@ module.exports = function createDreamTeam(members) {
   if (!Array.isArray(members)) {
     return false
   }
+  /*
   // Via reduce we return an array of 1st letters, than sort it and join 
   return members.reduce(function (dreamTeamName, element) {
     // If type of element is not a string skip it and return previous
@@ -15,5 +16,10 @@ module.exports = function createDreamTeam(members) {
     return dreamTeamName.concat(element.trim()[0].toUpperCase())
 
   }, []).sort().join('');
-
+  */
+  return members.filter(element => typeof element == 'string')
+    .map(element => element.trim()[0].toUpperCase())
+    .sort()
+    .join('');
 };
+
