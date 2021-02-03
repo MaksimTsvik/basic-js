@@ -6,6 +6,9 @@ module.exports = function getSeason(date/* date */) {
   if (!date) {
     return 'Unable to determine the time of year!'
   }
+  if (date.toDateString() == "Invalid Date") {
+    throw "Error";
+  }
 
   let month = date.getMonth()
   switch (month) {
