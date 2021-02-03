@@ -1,15 +1,14 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function getSeason(date/* date */) {
-  //throw new CustomError('Not implemented');
-  // remove line with error and write your code here
+  // Inspection for Valid data and if date is passed
   if (!date) {
     return 'Unable to determine the time of year!'
   }
   if (date.toDateString() == "Invalid Date") {
     throw "Error";
   }
-
+  // Just for fun use Switch for appropriate return of month value
   let month = date.getMonth()
   switch (month) {
     case 0:
