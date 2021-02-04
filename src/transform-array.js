@@ -13,19 +13,19 @@ module.exports = function transform(arr) {
         i++;
         break;
       case '--discard-prev':
-        (resultArr.length) ? resultArr.pop() : resultArr;
+        (resultArr.length && arr[i - 2] != '--discard-next') ? resultArr.pop() : resultArr;
         break;
       case '--double-next':
         (i < arr.length - 1) ? resultArr.push(arr[i + 1]) : resultArr;
         break;
       case '--double-prev':
-        (i > 0) ? resultArr.push(arr[i - 1]) : resultArr;
+        (i > 0 && arr[i - 2] != '--discard-next') ? resultArr.push(arr[i - 1]) : resultArr;
         break;
       default:
         resultArr.push(arr[i]);
-
     }
 
   }
+
   return resultArr;
 };
