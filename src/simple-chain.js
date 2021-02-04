@@ -18,7 +18,8 @@ const chainMaker = {
   },
 
   removeLink(position) {
-    if (position < 0 || position > this.getLength() || typeof position != "number") {
+    if (position <= 0 || position > (this.getLength() - 1) || typeof position != "number") {
+      this.chain = [];
       throw Error;
     }
     this.chain.splice(position - 1, 1);
