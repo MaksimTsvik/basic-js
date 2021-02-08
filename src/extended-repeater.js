@@ -4,12 +4,12 @@ module.exports = function repeater(str, options) {
   //throw new CustomError('Not implemented');
   // remove line with error and write your code here
 
-  if (!str) throw Error;
+  //if (!str) throw Error;
   if (!options.separator) options.separator = '+';
   if (!options.additionSeparator) options.additionSeparator = '|';
   if (!options.repeatTimes) options.repeatTimes = 1;
-  if (!options.additionRepeatTimes) options.additionRepeatTimes = 0;
-
+  if (!options.additionRepeatTimes) options.additionRepeatTimes = 1;
+  if (options.addition === undefined) options.addition = '';
 
   let result = '';
 
