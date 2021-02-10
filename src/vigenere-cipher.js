@@ -11,7 +11,7 @@ class VigenereCipheringMachine {
     if (!message || !key) throw Error;
 
     let answer = '';
-
+    message = message.toUpperCase();
     for (let i = 0, j = 0; i < message.length; i += 1, j += 1) {
       if (/[A-Za-z]/.test(message[i])) { // is letter
         if (isUppercase(message[i])) { // is UPPERCASE
@@ -24,7 +24,7 @@ class VigenereCipheringMachine {
             answer += String.fromCharCode(res + 65);
           }
         }
-
+        /*
         if (isLowercase(message[i])) { // is lowercase
           if (key[j % key.length].charCodeAt() >= 65 && key[j % key.length].charCodeAt() <= 90) {
             let res = (message[i].charCodeAt() - 97 + key[j % key.length].charCodeAt() - 65) % 26;
@@ -35,7 +35,7 @@ class VigenereCipheringMachine {
             answer += String.fromCharCode(res + 97);
           }
         }
-
+        */
       }
       else {
         answer += message[i];
@@ -57,9 +57,6 @@ class VigenereCipheringMachine {
     function isLowercase(letter) {
       return 97 <= letter.charCodeAt() && letter.charCodeAt() <= 122;  // 97 is character code for 'a'. 122 is 'z'.
     }
-
-
-
 
   }
   decrypt(encryptMessage, key) {
