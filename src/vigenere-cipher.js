@@ -7,26 +7,28 @@ class VigenereCipheringMachine {
   }
 
   encrypt(message, key) {
-    // Add message and key inspection
-    if (!message || !key) throw Error;
 
-    let answer = '';
+    if (!message || !key) throw Error; // Add message and key inspection
+
+    let encryptedString = ''; //Create an empty string for answer
+
     message = message.toUpperCase(); // Convert message and key to UpperCase string
     key = key.toUpperCase();
+
     for (let i = 0, j = 0; i < message.length; i += 1, j += 1) {
       if (isUppercase(message[i])) { // is UPPERCASE letter
         let res = (message[i].charCodeAt() - 65 + key[j % key.length].charCodeAt() - 65) % 26;
-        answer += String.fromCharCode(res + 65);
+        encryptedString += String.fromCharCode(res + 65);
       }
       else { //Add symbol
-        answer += message[i];
+        encryptedString += message[i];
         j -= 1;
       }
     }
-    if (this.mod === undefined) {
-      return answer;
+    if (this.mod === undefined) {  // Straight or reverse machine inspection
+      return encryptedString;
     } else {
-      return answer.split('').reverse().join('');
+      return encryptedString.split('').reverse().join('');
     }
 
     // Tests whether the given letter is an Latin uppercase letter.
@@ -36,29 +38,32 @@ class VigenereCipheringMachine {
   }
   decrypt(encryptMessage, key) {
 
-    if (!encryptMessage || !key) throw Error;
-    encryptMessage = encryptMessage.toUpperCase();
+    if (!encryptMessage || !key) throw Error; // Add message and key inspection
+
+    encryptMessage = encryptMessage.toUpperCase(); // Convert message and key to UpperCase string
     key = key.toUpperCase();
-    let answer = '';
+
+    let decryptString = ''; //Create an empty string for answer
     for (let i = 0, j = 0; i < encryptMessage.length; i += 1, j += 1) {
 
-      if (isUppercase(encryptMessage[i])) {
+      if (isUppercase(encryptMessage[i])) { // is UPPERCASE letter
         let res = ((encryptMessage[i].charCodeAt() - 65) - (key[j % key.length].charCodeAt() - 65) % 26);
         if (res < 0) {
-          res = eval(`26 ${res}`);
+          res = 26 + res;
         }
-        answer += String.fromCharCode(res + 65);
+        decryptString += String.fromCharCode(res + 65);
       }
-      else {
-        answer += encryptMessage[i];
+      else { //Add symbol
+        decryptString += encryptMessage[i];
         j -= 1;
       }
     }
-    if (this.mod === undefined) {
-      return answer;
+    if (this.mod === undefined) { // Straight or reverse machine inspection
+      return decryptString;
     } else {
-      return answer.split('').reverse().join('');
+      return decryptString.split('').reverse().join('');
     }
+
     // Tests whether the given character code is an Latin uppercase letter.
     function isUppercase(letter) {
       return 65 <= letter.charCodeAt() && letter.charCodeAt() <= 90;  // 65 is character code for 'A'. 90 is 'Z'.
