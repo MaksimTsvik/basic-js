@@ -11,32 +11,21 @@ class VigenereCipheringMachine {
     if (!message || !key) throw Error;
 
     let answer = '';
-    message = message.toUpperCase();
+    message = message.toUpperCase(); // Convert message to UpperCase string
+    key = key.toUpperCase();
     for (let i = 0, j = 0; i < message.length; i += 1, j += 1) {
-      if (/[A-Za-z]/.test(message[i])) { // is letter
-        if (isUppercase(message[i])) { // is UPPERCASE
-          if (isUppercase(key[j % key.length])) {
-            let res = (message[i].charCodeAt() - 65 + key[j % key.length].charCodeAt() - 65) % 26;
-            answer += String.fromCharCode(res + 65);
-          }
-          if (isLowercase(key[j % key.length])) {
-            let res = (message[i].charCodeAt() - 65 + key[j % key.length].charCodeAt() - 97) % 26;
-            answer += String.fromCharCode(res + 65);
-          }
-        }
-        /*
-        if (isLowercase(message[i])) { // is lowercase
-          if (key[j % key.length].charCodeAt() >= 65 && key[j % key.length].charCodeAt() <= 90) {
-            let res = (message[i].charCodeAt() - 97 + key[j % key.length].charCodeAt() - 65) % 26;
-            answer += String.fromCharCode(res + 97);
-          }
-          if (key[j % key.length].charCodeAt() >= 97 && key[j % key.length].charCodeAt() <= 122) {
-            let res = (message[i].charCodeAt() - 97 + key[j % key.length].charCodeAt() - 97) % 26;
-            answer += String.fromCharCode(res + 97);
-          }
-        }
-        */
+      //if (/[A-Za-z]/.test(message[i])) { // is letter
+      if (isUppercase(message[i])) { // is UPPERCASE letter
+        //if (isUppercase(key[j % key.length])) {
+        let res = (message[i].charCodeAt() - 65 + key[j % key.length].charCodeAt() - 65) % 26;
+        answer += String.fromCharCode(res + 65);
+        //}
+        // if (isLowercase(key[j % key.length])) {
+        //  let res = (message[i].charCodeAt() - 65 + key[j % key.length].charCodeAt() - 97) % 26;
+        //  answer += String.fromCharCode(res + 65);
+        //}
       }
+      //}
       else {
         answer += message[i];
         j -= 1;
