@@ -2,7 +2,7 @@ const CustomError = require("../extensions/custom-error");
 
 class VigenereCipheringMachine {
 
-  constructor(mod) {
+  constructor(mod) { // Modifications constructor
     this.mod = mod;
   }
 
@@ -40,10 +40,11 @@ class VigenereCipheringMachine {
 
     if (!encryptMessage || !key) throw Error; // Add message and key inspection
 
+    let decryptString = ''; //Create an empty string for answer
+
     encryptMessage = encryptMessage.toUpperCase(); // Convert message and key to UpperCase string
     key = key.toUpperCase();
 
-    let decryptString = ''; //Create an empty string for answer
     for (let i = 0, j = 0; i < encryptMessage.length; i += 1, j += 1) {
 
       if (isUppercase(encryptMessage[i])) { // is UPPERCASE letter
